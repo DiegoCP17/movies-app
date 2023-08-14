@@ -8,7 +8,7 @@
 
 # Requisitos
 
-0. crear un repo en github llamado movies-app y crear un nuevo proyecto de react
+0. crear un repo en github llamado movies-app y crear un nuevo proyecto de react ✅
 
 1. usar la api
 
