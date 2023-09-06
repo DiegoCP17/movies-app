@@ -54,6 +54,7 @@ export const Home = () => {
         loadingGetMovies={loadingGetMovies}
       />
       <Slider />
+      <br />
       <MoviesHome movies={movies} />
     </div>
   );
