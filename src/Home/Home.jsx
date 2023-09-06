@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MoviesHome } from "../MoviesHome/MoviesHome";
-import { Slider } from "../Slider/Slider";
-import { Navbar } from "../Navbar/Navbar";
+import { MoviesHome } from "../components/MoviesHome/MoviesHome";
+import { Slider } from "../components/Slider/Slider";
+import { Navbar } from "../components/Navbar/Navbar";
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -11,7 +11,8 @@ export const Home = () => {
   useEffect(() => {
     const API_KEY = process.env.REACT_APP_API_KEY;
     const API_BASE = process.env.REACT_APP_API_URL;
-    const API_TOP_RATED_MOVIES_URL = `${API_BASE}movie/top_rated?api_key=${API_KEY}&language=es-US&page=1`;
+    const API_TOP_RATED_MOVIES_URL = `${API_BASE}movie/top_rated?api_key=${API_KEY}&language=es-ES&page=1`;
+
     axios(API_TOP_RATED_MOVIES_URL)
       .then((response) => {
         setMovies(response.data.results);

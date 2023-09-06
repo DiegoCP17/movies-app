@@ -18,6 +18,17 @@ function MovieSearch({
     setQuery(event.target.value);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleSearch = async () => {
+    await handleSetMoviesByInput(query);
+    setLoadingGetMovies(false);
+  };
+
   return (
     <StyledContainer>
       <SearchContainer>
@@ -25,6 +36,7 @@ function MovieSearch({
           type="text"
           value={query}
           onChange={handleInputChange}
+          onKeyPress={handleKeyPress}
           placeholder="Buscar películas..."
           inputProps={{
             style: {
@@ -40,10 +52,7 @@ function MovieSearch({
         variant="contained"
         color="primary"
         loading={loadingGetMovies}
-        onClick={async () => {
-          await handleSetMoviesByInput(query);
-          setLoadingGetMovies(false);
-        }}
+        onClick={handleSearch}
       >
         Buscar
       </StyledButton>
