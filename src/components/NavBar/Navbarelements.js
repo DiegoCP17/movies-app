@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { styled as mystyle, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-
 // export const AppBarStyles = styled(AppBar)`
 //   //aqui empiezas a cambiar estilos en el componente de mui
 //   //recuerda que un componente de mui tiene hijos, div, span o lo que sea
@@ -11,6 +10,12 @@ import InputBase from "@mui/material/InputBase";
 //   //dandole en el boton de sandbox que te manda a una nueva página con un ejemplo de código
 // `;
 
+export const ContainerIcon = styled.div`
+  @media (min-width: 768px) {
+    display: ${(props) =>
+      props?.showInScreen === "mobile" ? "none" : "block"};
+  }
+`;
 export const Container = styled.div`
   width: 100%;
   height: 50px;
@@ -84,36 +89,28 @@ export const MenuItemLink = styled.a`
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 0.5rem 0;
+  padding: 0;
   color: #64b2ff;
   font-family: sans-serif;
   font-size: 1rem;
   font-weight: 300;
   cursor: pointer;
   transition: 0.5s all ease;
+  box-sizing: border-box;
 
   &:hover {
     color: #e0792a;
     transition: 0.5s all ease;
 
-    div {
-      svg {
-        fill: #64b2ff;
-      }
+    div svg {
+      fill: #64b2ff;
     }
   }
 
   div {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     svg {
       display: none;
-      fill: #e0792a;
-      margin-right: 0.5rem;
     }
   }
 
@@ -122,7 +119,6 @@ export const MenuItemLink = styled.a`
 
     div {
       width: auto;
-
       svg {
         display: flex;
       }
@@ -154,7 +150,9 @@ export const SearchInput = styled.input`
 
 export const MobileIcon = styled.div`
   display: none;
-
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   @media (max-width: 768px) {
     display: flex;
     align-items: center;

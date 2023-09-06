@@ -3,6 +3,10 @@ import { TextField, Button, Container } from "@mui/material";
 
 export const StyledContainer = styled(Container)`
   border: none;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
 `;
 
 export const ImageContainer = styled.div`
@@ -29,15 +33,21 @@ export const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 export const StyledTextField = styled(TextField)`
   margin-right: 10px;
   width: 200px;
-  
+  height: 100%;
+
+  div.MuiInputBase-root {
+    height: 100%;
+    input.MuiInputBase-input {
+      padding: 0;
+    }
+  }
 `;
 
 export const StyledButton = styled(Button)`
-  height: 50px;
+  height: 100%;
 `;

@@ -1,14 +1,42 @@
-import React, { useState } from "react";
-
-import MovieSearch from "../SearchMovies/SearchMovie";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { MoviesHome } from "../MoviesHome/MoviesHome";
-import { Navbar } from "../Navbar/Navbar";
+import { Navbar } from "../NavBar/Navbar";
 import { Slider } from "../Slider/Slider";
 
 export const Home = () => {
-  const [mainMovies, setMainMovies] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [loadingGetMovies, setLoadingGetMovies] = useState(false);
 
+  useEffect(() => {
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    const API_BASE = process.env.REACT_APP_API_URL;
+    const API_TOP_RATED_MOVIES_URL = `${API_BASE}movie/top_rated?api_key=${API_KEY}&language=es-US&page=1`;
+    axios(API_TOP_RATED_MOVIES_URL)
+      .then((response) => {
+        setMovies(response.data.results);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const handleSetMoviesByInput = async (inputValue) => {
+    try {
+      setLoadingGetMovies(true);
+      const API_KEY = process.env.REACT_APP_API_KEY;
+      const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputValue}`;
+      const response = await axios.get(API_SEARCH);
+      const data = response.data.results;
+      setMovies(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      setLoadingGetMovies(false);
+      setMovies([]);
+      return [];
+    }
+  };
   return (
     <div
       style={{
@@ -19,19 +47,13 @@ export const Home = () => {
         backgroundColor: "#080f28",
       }}
     >
-      <Navbar />
-      <Slider />
-      <MovieSearch
-        setMainMovies={setMainMovies}
-        setShowSearchResults={setShowSearchResults}
+      <Navbar
+        handleSetMoviesByInput={handleSetMoviesByInput}
+        setLoadingGetMovies={setLoadingGetMovies}
+        loadingGetMovies={loadingGetMovies}
       />
-      {showSearchResults ? (
-        // Renderiza los resultados de la búsqueda
-        <div>{/* Muestra los resultados de la búsqueda */}</div>
-      ) : (
-        // Renderiza las películas principales
-        <MoviesHome movies={mainMovies} />
-      )}
+      <Slider />
+      <MoviesHome movies={movies} />
     </div>
   );
 };
