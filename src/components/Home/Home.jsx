@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MoviesHome } from "../MoviesHome/MoviesHome";
-import { Navbar } from "../NavBar/Navbar";
 import { Slider } from "../Slider/Slider";
+import { Navbar } from "../Navbar/Navbar";
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
