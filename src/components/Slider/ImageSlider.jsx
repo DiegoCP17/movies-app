@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   Container,
   SlideContainer,
-  RightArrowStyles,
-  LeftArrowStyles,
   DotsContainerStyles,
   DotStyles,
+  StyledArrowForwardIosIcon,
+  StyledArrowBackIosIcon,
 } from "./ImageSliderElements";
 
 export const ImageSlider = ({ slides }) => {
@@ -29,9 +29,11 @@ export const ImageSlider = ({ slides }) => {
 
   return (
     <Container>
-      <LeftArrowStyles onClick={gotoPrevious}>🢀</LeftArrowStyles>
-      <RightArrowStyles onClick={gotoNext}>🢂</RightArrowStyles>
-        <SlideContainer imageUrl={slides[currentIndex]} />
+      <StyledArrowBackIosIcon onClick={gotoPrevious}>🢀</StyledArrowBackIosIcon>
+      <StyledArrowForwardIosIcon onClick={gotoNext}>
+        🢂
+      </StyledArrowForwardIosIcon>
+      <SlideContainer imageUrl={slides[currentIndex]} />
       <DotsContainerStyles>
         {slides.map((_, slideIndex) => (
           <DotStyles
