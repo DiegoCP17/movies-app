@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
+import SaveIcon from "@mui/icons-material/Save";
+import LoadingButton from "@mui/lab/LoadingButton";
 import {
   StyledTextField,
   SearchContainer,
-  StyledButton,
   StyledContainer,
 } from "./StyleSearchMovies";
 
@@ -13,6 +13,7 @@ function MovieSearch({
   loadingGetMovies,
 }) {
   const [query, setQuery] = useState("");
+  const [searching, setSearching] = useState(false);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -20,13 +21,19 @@ function MovieSearch({
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleSearch();
+      handleSearchWithDelay();
     }
   };
 
-  const handleSearch = async () => {
-    await handleSetMoviesByInput(query);
-    setLoadingGetMovies(false);
+  const handleSearchWithDelay = async () => {
+    setSearching(true); // Mostrar estado de búsqueda
+
+    // Agregar un retraso de 2 segundos antes de realizar la búsqueda
+    setTimeout(async () => {
+      await handleSetMoviesByInput(query);
+      setLoadingGetMovies(false);
+      setSearching(false); // Ocultar estado de búsqueda cuando termine
+    }, 500); // 2000 milisegundos (2 segundos)
   };
 
   return (
@@ -47,15 +54,15 @@ function MovieSearch({
           fullWidth
         />
       </SearchContainer>
-      <StyledButton
+      <LoadingButton
         type="submit"
         variant="contained"
-        color="primary"
-        loading={loadingGetMovies}
-        onClick={handleSearch}
+        loading={searching || loadingGetMovies}
+        loadingIndicator={<span style={{ color: "grey" }}>Buscando</span>}
+        onClick={handleSearchWithDelay}
       >
         Buscar
-      </StyledButton>
+      </LoadingButton>
     </StyledContainer>
   );
 }
