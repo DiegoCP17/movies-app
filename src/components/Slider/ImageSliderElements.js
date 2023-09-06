@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -19,23 +21,23 @@ export const SlideContainer = styled.div`
   background-image: url(${(props) => props.imageUrl});
 `;
 
-export const RightArrowStyles = styled.div`
+export const StyledArrowForwardIosIcon = styled(ArrowForwardIosIcon)`
   position: absolute;
-  top: 40%;
+  top: 50%;
   transform: translate(0, -50%);
   right: 10px;
   font-size: 35px;
-  color: #64b1ff64;
+  color: #fff;
   cursor: pointer;
 `;
 
-export const LeftArrowStyles = styled.div`
+export const StyledArrowBackIosIcon = styled(ArrowBackIosIcon)`
   position: absolute;
-  top: 40%;
+  top: 50%;
   transform: translate(0, -50%);
   left: 10px;
   font-size: 35px;
-  color: #64b1ff64;
+  color: #fff;
   cursor: pointer;
 `;
 
