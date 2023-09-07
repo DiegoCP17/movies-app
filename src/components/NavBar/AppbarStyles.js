@@ -1,6 +1,7 @@
 import { styled, alpha } from "@mui/material/styles";
 import { Toolbar } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
 
 export const StyleToolbar = styled(Toolbar)`
   background-color: #141a32;
