@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SaveIcon from "@mui/icons-material/Save";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {
   StyledTextField,
@@ -13,7 +12,6 @@ function MovieSearch({
   loadingGetMovies,
 }) {
   const [query, setQuery] = useState("");
-  const [searching, setSearching] = useState(false);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -26,14 +24,8 @@ function MovieSearch({
   };
 
   const handleSearchWithDelay = async () => {
-    setSearching(true); // Mostrar estado de búsqueda
-
-    // Agregar un retraso de 2 segundos antes de realizar la búsqueda
-    setTimeout(async () => {
-      await handleSetMoviesByInput(query);
-      setLoadingGetMovies(false);
-      setSearching(false); // Ocultar estado de búsqueda cuando termine
-    }, 500); // 2000 milisegundos (2 segundos)
+    await handleSetMoviesByInput(query);
+    setLoadingGetMovies(false);
   };
 
   return (
@@ -57,7 +49,7 @@ function MovieSearch({
       <LoadingButton
         type="submit"
         variant="contained"
-        loading={searching || loadingGetMovies}
+        loading={loadingGetMovies}
         loadingIndicator={<span style={{ color: "grey" }}>Buscando</span>}
         onClick={handleSearchWithDelay}
       >
