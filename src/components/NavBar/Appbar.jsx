@@ -117,11 +117,7 @@ export const SearchAppBar = ({
         </StyleToolbar>
       </AppBar>
 
-      <Drawer
-        anchor="left"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
+      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
         <NavListDrawer
           handleSetMoviesByInput={handleSetMoviesByInput}
           setLoadingGetMovies={setLoadingGetMovies}

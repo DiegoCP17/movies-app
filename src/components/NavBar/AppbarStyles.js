@@ -1,5 +1,8 @@
-import { styled, alpha } from "@mui/material/styles";
-import { Box, Toolbar } from "@mui/material";
+import styled from "@emotion/styled";
+import { styled as muiStyled, alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+
+import { Toolbar } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 
 export const StyleToolbar = styled(Toolbar)`
@@ -32,22 +35,25 @@ export const StyleBoxDrawer = styled(Box)`
   }
 `;
 
-export const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
+export const Search = muiStyled("div")(({ theme }) => {
+  console.log(theme);
+  return {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  };
+});
 
-export const SearchIconWrapper = styled("div")(({ theme }) => ({
+export const SearchIconWrapper = muiStyled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
@@ -57,7 +63,7 @@ export const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-export const StyledInputBase = styled(InputBase)(({ theme }) => ({
+export const StyledInputBase = muiStyled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
