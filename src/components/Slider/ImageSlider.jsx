@@ -29,10 +29,8 @@ export const ImageSlider = ({ slides }) => {
 
   return (
     <Container>
-      <StyledArrowBackIosIcon onClick={gotoPrevious}>🢀</StyledArrowBackIosIcon>
-      <StyledArrowForwardIosIcon onClick={gotoNext}>
-        🢂
-      </StyledArrowForwardIosIcon>
+      <StyledArrowBackIosIcon onClick={gotoPrevious}></StyledArrowBackIosIcon>
+      <StyledArrowForwardIosIcon onClick={gotoNext}></StyledArrowForwardIosIcon>
       <SlideContainer imageUrl={slides[currentIndex]} />
       <DotsContainerStyles>
         {slides.map((_, slideIndex) => (

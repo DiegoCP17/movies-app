@@ -8,9 +8,6 @@ import {
   MobileIcon,
   Wrapper,
   ContainerIcon,
-  // Search,
-  // SearchIconWrapper,
-  // StyledInputBase,
 } from "./Navbarelements";
 
 import MovieSearch from "../SearchMovies/SearchMovie";
@@ -22,9 +19,7 @@ import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
 import LiveTvTwoToneIcon from "@mui/icons-material/LiveTvTwoTone";
 import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
 import SearchIcon from "@mui/icons-material/Search";
-// import { Icon, SearchTwoToneIcon } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
-// import Toolbar from "@mui/material/Toolbar";
+import { useMediaQuery } from "@mui/material";
 
 const CustomIcon = ({ icon: IconComponent, label, showInScreen }) => (
   <ContainerIcon showInScreen={showInScreen}>
@@ -42,6 +37,8 @@ export const Navbar = ({
 }) => {
   const [ShowMobileMenu, setShowMobileMenu] = useState(false);
 
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <Container>
       <Wrapper>
@@ -52,6 +49,7 @@ export const Navbar = ({
           <p>Movies -</p>
           <p>Max</p>
         </LogoContainer>
+
         <MobileIcon onClick={() => setShowMobileMenu(!ShowMobileMenu)}>
           {ShowMobileMenu ? (
             <CloseIcon
@@ -63,41 +61,51 @@ export const Navbar = ({
             />
           )}
         </MobileIcon>
-        <Menu open={ShowMobileMenu}>
+        <Menu open={isMobile ? ShowMobileMenu : true}>
           <MenuItem>
             <MenuItemLink onClick={() => setShowMobileMenu(!ShowMobileMenu)}>
               <MobileIcon>
-                <CustomIcon icon={HomeTwoToneIcon} label="INICIO" />
+                <CustomIcon
+                  icon={HomeTwoToneIcon}
+                  label="INICIO"
+                />
               </MobileIcon>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
             <MenuItemLink onClick={() => setShowMobileMenu(!ShowMobileMenu)}>
               <MobileIcon>
-                <CustomIcon icon={LiveTvTwoToneIcon} label="TOP 10" />
+                <CustomIcon
+                  icon={LiveTvTwoToneIcon}
+                  label="TOP 10"
+                />
               </MobileIcon>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
             <MenuItemLink onClick={() => setShowMobileMenu(!ShowMobileMenu)}>
               <MobileIcon>
-                <CustomIcon icon={FavoriteTwoToneIcon} label="FAVORITAS" />
+                <CustomIcon
+                  icon={FavoriteTwoToneIcon}
+                  label="FAVORITAS"
+                />
               </MobileIcon>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
             <MenuItemLink>
               <MobileIcon>
-                <CustomIcon icon={SearchIcon} showInScreen="mobile" />
+                <CustomIcon
+                  icon={SearchIcon}
+                  showInScreen="mobile"
+                />
               </MobileIcon>
               <MovieSearch
                 handleSetMoviesByInput={handleSetMoviesByInput}
                 setLoadingGetMovies={setLoadingGetMovies}
                 loadingGetMovies={loadingGetMovies}
                 inputProps={{
-                  style: {
-                    width: "10px",
-                  },
+                  
                 }}
               />
             </MenuItemLink>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MoviesHome } from "../components/MoviesHome/MoviesHome";
 import { Slider } from "../components/Slider/Slider";
-import { Navbar } from "../components/Navbar/Navbar";
+
+import { SearchAppBar } from "../components/Navbar/Appbar";
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -48,7 +49,7 @@ export const Home = () => {
         backgroundColor: "#080f28",
       }}
     >
-      <Navbar
+      <SearchAppBar
         handleSetMoviesByInput={handleSetMoviesByInput}
         setLoadingGetMovies={setLoadingGetMovies}
         loadingGetMovies={loadingGetMovies}

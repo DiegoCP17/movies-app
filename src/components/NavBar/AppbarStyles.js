@@ -1,10 +1,35 @@
 import { styled, alpha } from "@mui/material/styles";
-import { Toolbar } from "@mui/material";
+import { Box, Toolbar } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
 
 export const StyleToolbar = styled(Toolbar)`
   background-color: #141a32;
+`;
+
+export const StyleBox = styled(Box)`
+  display: flex;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const StyleBoxMenu = styled(Box)`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const StyleBoxDrawer = styled(Box)`
+  width: 250px;
+  color: white;
+  height: 100%;
+  background-color: #18224a;
+
+  &:hover {
+    color: #008cff;
+  }
 `;
 
 export const Search = styled("div")(({ theme }) => ({

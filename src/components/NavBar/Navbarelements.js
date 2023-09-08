@@ -1,14 +1,4 @@
 import styled from "@emotion/styled";
-import { styled as mystyle, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-// export const AppBarStyles = styled(AppBar)`
-//   //aqui empiezas a cambiar estilos en el componente de mui
-//   //recuerda que un componente de mui tiene hijos, div, span o lo que sea
-//   // tienes que ganarle en especificidad para poder aplicarle los estilos correctos
-//   //utiliza las clases css de mui para ayudarte a ganar en especificidad
-//   //puedes mirar ejemplos que hayan en mui de componentes estilados
-//   //dandole en el boton de sandbox que te manda a una nueva página con un ejemplo de código
-// `;
 
 export const ContainerIcon = styled.div`
   @media (min-width: 768px) {
@@ -80,7 +70,12 @@ export const MenuItem = styled.li`
     width: 100%;
     height: 78px;
     display: flex;
-    justify-content: ce;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 769px) {
+    display: flex;
     align-items: center;
   }
 `;
@@ -153,62 +148,10 @@ export const MobileIcon = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
     cursor: pointer;
   }
 `;
-
-/*Barra de busqueda*/
-export const Search = mystyle("div")(({ theme }) => ({
-  position: "relative",
-  // borderRadius: theme.shape.borderRadius,
-  borderRadius: "50px",
-  style: {
-    height: "60%", // Agregar estilos en línea
-  },
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-export const SearchIconWrapper = mystyle("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-export const StyledInputBase = mystyle(InputBase)(({ theme }) => ({
-  color: "inherit",
-  //"& div.MuiInputBase-root": { height: "60%" },
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `10px`,
-    // "@media (min-width: 960px)": {
-    //   StyledInputBase: {
-    //     paddingLeft: "5px",
-    //   },
-    // },
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));

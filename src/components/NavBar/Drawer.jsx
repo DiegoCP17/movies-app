@@ -10,18 +10,11 @@ import {
 import {
   Search,
   SearchIconWrapper,
-  StyleToolbar,
+  StyleBoxDrawer,
   StyledInputBase,
-  StyledMenuButton,
 } from "./AppbarStyles";
 
-import { Box } from "@mui/system";
-
-import HomeIcon from "@mui/icons-material/Home";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
 
@@ -29,6 +22,9 @@ export default function NavListDrawer({
   onClick,
   handleSetMoviesByInput,
   setLoadingGetMovies,
+  navLinks,
+  isOpen,
+  onClose,
 }) {
   const [query, setQuery] = useState("");
 
@@ -36,9 +32,10 @@ export default function NavListDrawer({
     setQuery(event.target.value);
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = async (event) => {
     if (event.key === "Enter") {
-      handleSearchWithDelay();
+      await handleSearchWithDelay();
+      onClose(); // Cierra el drawer cuando presionas Enter
     }
   };
 
@@ -48,29 +45,27 @@ export default function NavListDrawer({
   };
 
   return (
-    <Box
-      sx={{ width: 250, bgcolor: "#18224a", color: "white" }}
-      onClick={onClick}
-      color={"inherit"}
-    >
+    <StyleBoxDrawer onClick={onClick}>
       <nav aria-label="main Inicio Favoritas">
         <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <HomeIcon sx={{ color: orange[500] }} />
-              </ListItemIcon>
-              <ListItemText primary="Inicio" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <FavoriteIcon sx={{ color: orange[500] }} />
-              </ListItemIcon>
-              <ListItemText primary="Favoritas" />
-            </ListItemButton>
-          </ListItem>
+          {navLinks.map((item) => (
+            <ListItem
+              disablePadding
+              key={item.title}
+            >
+              <ListItemButton
+                component="a"
+                href={item.path}
+                onClick={(e) => {
+                  e.stopPropagation(); // Detiene la propagación del evento
+                  onClose(); // Cierra el drawer al hacer clic en un botón
+                }}
+              >
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText>{item.title}</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </nav>
       <Divider />
@@ -87,11 +82,12 @@ export default function NavListDrawer({
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
                 inputProps={{ "aria-label": "search" }}
+                onClick={(e) => e.stopPropagation()}
               />
             </Search>
           </ListItem>
         </List>
       </nav>
-    </Box>
+    </StyleBoxDrawer>
   );
 }

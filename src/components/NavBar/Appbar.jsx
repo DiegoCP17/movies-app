@@ -1,24 +1,37 @@
 import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close"; // Agregamos el ícono de cierre
 import SearchIcon from "@mui/icons-material/Search";
-import List from "@mui/material/List";
+import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { orange } from "@mui/material/colors";
+
 import Button from "@mui/material/Button";
-import { Container, Drawer, IconButton, Toolbar } from "@mui/material";
+import { Drawer, IconButton } from "@mui/material";
 import LocalMoviesTwoToneIcon from "@mui/icons-material/LocalMoviesTwoTone";
 import {
   Search,
   SearchIconWrapper,
+  StyleBox,
+  StyleBoxMenu,
   StyleToolbar,
   StyledInputBase,
-  StyledMenuButton,
 } from "./AppbarStyles";
 import NavListDrawer from "./Drawer";
 
-// const navItems = ["Inicio", "Favoritas"];
+const navLinks = [
+  {
+    title: "Inicio",
+    path: "#Inicio",
+    icon: <HomeIcon sx={{ color: orange[500] }} />,
+  },
+  {
+    title: "Favoritas",
+    path: "#Favoritas",
+    icon: <FavoriteIcon sx={{ color: orange[500] }} />,
+  },
+];
 
 export const SearchAppBar = ({
   handleSetMoviesByInput,
@@ -26,8 +39,6 @@ export const SearchAppBar = ({
   loadingGetMovies,
 }) => {
   const [query, setQuery] = useState("");
-  // const [menuOpen, setMenuOpen] = useState(false);
-
   const [open, setOpen] = useState(false);
 
   const handleInputChange = (event) => {
@@ -37,6 +48,7 @@ export const SearchAppBar = ({
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearchWithDelay();
+      setOpen(false);
     }
   };
 
@@ -45,21 +57,19 @@ export const SearchAppBar = ({
     setLoadingGetMovies(false);
   };
 
-  // const toggleMenu = () => {
-  //   setMenuOpen(!menuOpen);
-  // };
-
   return (
     <>
       <AppBar position="static">
         <StyleToolbar>
-          <IconButton
-            color="inherit"
-            size="large"
-            onClick={() => setOpen(true)}
-          >
-            <MenuIcon />
-          </IconButton>
+          <StyleBoxMenu>
+            <IconButton
+              color="inherit"
+              size="large"
+              onClick={() => setOpen(true)}
+            >
+              <MenuIcon sx={{ color: "#008cff" }} />
+            </IconButton>
+          </StyleBoxMenu>
           <LocalMoviesTwoToneIcon
             sx={{ color: "orange", fontSize: "2rem", mr: "0.5rem" }}
           />
@@ -80,8 +90,18 @@ export const SearchAppBar = ({
               Max
             </Typography>
           </Typography>
-          <Button color="inherit">Inicio</Button>
-          <Button color="inherit">Favoritas</Button>
+          <StyleBox>
+            {navLinks.map((item) => (
+              <Button
+                color="inherit"
+                key={item.title}
+                component="a"
+                href={item.path}
+              >
+                {item.title}
+              </Button>
+            ))}
+          </StyleBox>
           <Search>
             <SearchIconWrapper>
               <SearchIcon sx={{ color: "orange" }} />
@@ -102,73 +122,14 @@ export const SearchAppBar = ({
         open={open}
         onClose={() => setOpen(false)}
       >
-        <NavListDrawer onClick={() => setOpen(false)} />
+        <NavListDrawer
+          handleSetMoviesByInput={handleSetMoviesByInput}
+          setLoadingGetMovies={setLoadingGetMovies}
+          navLinks={navLinks}
+          isOpen={open}
+          onClose={() => setOpen(false)}
+        />
       </Drawer>
     </>
-
-    ////////////////////////////////////////////////////////////////
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="absolute">
-    //     <StyleToolbar>
-    //       <StyledMenuButton
-    //         showInScreen="mobile"
-    //         onClick={toggleMenu}
-    //       >
-    //         {menuOpen ? <CloseIcon /> : <MenuIcon />}
-    //       </StyledMenuButton>
-    //       <LocalMoviesTwoToneIcon
-    //         sx={{ color: "warning.main", fontSize: "2rem", mr: "0.5rem" }}
-    //       />
-    //       <Typography
-    //         variant="h6"
-    //         component="div"
-    //         sx={{
-    //           flexGrow: 1,
-    //           display: { xs: "none", sm: "block" },
-    //         }}
-    //       >
-    //         Movie -{" "}
-    //         <Typography
-    //           variant="h5"
-    //           component="div"
-    //           sx={{ flexGrow: 1, display: "inline", color: "warning.main" }}
-    //         >
-    //           Max
-    //         </Typography>
-    //       </Typography>
-    //       <Box
-    //         sx={{
-    //           display: {
-    //             xs: menuOpen ? "none" : "block", // Mostrar el menú solo cuando está abierto
-    //             sm: "block",
-    //           },
-    //         }}
-    //       >
-    //         <List>
-    //           {navItems.map((item) => (
-    //             <Button
-    //               key={item}
-    //               sx={{ color: "#fff" }}
-    //             >
-    //               {item}
-    //             </Button>
-    //           ))}
-    //         </List>
-    //       </Box>
-    // <Search>
-    //   <SearchIconWrapper>
-    //     <SearchIcon />
-    //   </SearchIconWrapper>
-    //   <StyledInputBase
-    //     placeholder="Buscar pelís..."
-    //     value={query}
-    //     onChange={handleInputChange}
-    //     onKeyDown={handleKeyPress}
-    //     inputProps={{ "aria-label": "search" }}
-    //   />
-    // </Search>
-    //     </StyleToolbar>
-    //   </AppBar>
-    // </Box>
   );
 };
