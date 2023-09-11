@@ -3,9 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import HomeIcon from "@mui/icons-material/Home";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { orange } from "@mui/material/colors";
+
 
 import Button from "@mui/material/Button";
 import { Drawer, IconButton } from "@mui/material";
@@ -19,21 +17,12 @@ import {
   StyledInputBase,
 } from "./AppbarStyles";
 import NavListDrawer from "./Drawer";
+import { NavLink } from "react-router-dom";
 
-const navLinks = [
-  {
-    title: "Inicio",
-    path: "#Inicio",
-    icon: <HomeIcon sx={{ color: orange[500] }} />,
-  },
-  {
-    title: "Favoritas",
-    path: "#Favoritas",
-    icon: <FavoriteIcon sx={{ color: orange[500] }} />,
-  },
-];
+
 
 export const SearchAppBar = ({
+  navArrayLinks,
   handleSetMoviesByInput,
   setLoadingGetMovies,
   loadingGetMovies,
@@ -91,12 +80,12 @@ export const SearchAppBar = ({
             </Typography>
           </Typography>
           <StyleBox>
-            {navLinks.map((item) => (
+            {navArrayLinks.map((item) => (
               <Button
                 color="inherit"
                 key={item.title}
-                component="a"
-                href={item.path}
+                component={NavLink}
+                to={item.path}
               >
                 {item.title}
               </Button>
@@ -117,11 +106,15 @@ export const SearchAppBar = ({
         </StyleToolbar>
       </AppBar>
 
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+      <Drawer
+        anchor="left"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <NavListDrawer
           handleSetMoviesByInput={handleSetMoviesByInput}
           setLoadingGetMovies={setLoadingGetMovies}
-          navLinks={navLinks}
+          navArrayLinks={navArrayLinks}
           isOpen={open}
           onClose={() => setOpen(false)}
         />
