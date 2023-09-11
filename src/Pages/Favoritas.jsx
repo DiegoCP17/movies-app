@@ -2,5 +2,9 @@ import React from "react";
 import { FavoriteMovies } from "../components/FavoriteMovies/FavoriteMovies";
 
 export const Favoritas = () => {
-  return <FavoriteMovies />;
+  return (
+    <div style={{ backgroundColor: "blue" }}>
+      <FavoriteMovies style={{}} />;
+    </div>
+  );
 };
