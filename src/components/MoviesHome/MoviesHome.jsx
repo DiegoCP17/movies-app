@@ -6,7 +6,10 @@ export const MoviesHome = ({ movies }) => {
   return (
     <MainContainer>
       {movies.map((movieReq) => (
-        <MovieBox key={movieReq.id} {...movieReq} />
+        <MovieBox
+          key={movieReq.id}
+          {...movieReq}
+        />
       ))}
     </MainContainer>
   );

@@ -12,6 +12,7 @@ export const Card = styled.div`
   text-align: center;
   vertical-align: top;
   transition: transform 0.2s ease-in-out;
+  padding-top: 25px;
 
   img {
     max-width: 100%;
@@ -69,4 +70,9 @@ export const StyleButton = styled(Button)`
   position: absolute;
   bottom: 8%;
   left: 35%;
+
+  @media (max-width: 768px) {
+    font-size: 6px;
+    padding: 8px 16px;
+  }
 `;
