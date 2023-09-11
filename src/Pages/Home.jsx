@@ -4,8 +4,6 @@ import { MoviesHome } from "../components/MoviesHome/MoviesHome";
 import { Slider } from "../components/Slider/Slider";
 import { SearchAppBar } from "../components/Navbar/Appbar";
 
-
-
 export const Home = () => {
   const [movies, setMovies] = useState([]);
   const [loadingGetMovies, setLoadingGetMovies] = useState(false);
@@ -51,14 +49,17 @@ export const Home = () => {
         maxwidth: "100%",
       }}
     >
-      <SearchAppBar
+      {/* <SearchAppBar
+        
+      /> */}
+      <Slider />
+      <br />
+      <MoviesHome
+        movies={movies}
         handleSetMoviesByInput={handleSetMoviesByInput}
         setLoadingGetMovies={setLoadingGetMovies}
         loadingGetMovies={loadingGetMovies}
       />
-      <Slider />
-      <br />
-      <MoviesHome movies={movies} />
     </div>
   );
 };
