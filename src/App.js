@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Home } from "./Pages/Home";
 import { SearchAppBar } from "./components/Navbar/Appbar";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { orange } from "@mui/material/colors";
+import { Favoritas } from "./Pages/Favoritas";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -65,8 +66,16 @@ function App() {
       />
       <Routes>
         <Route
+          path="/"
+          element={<Navigate to="/Inicio" />}
+        />
+        <Route
           path="/Inicio"
           element={<Home movies={movies} />}
+        />
+        <Route
+          path="/Favoritas"
+          element={<Favoritas />}
         />
       </Routes>
     </>
