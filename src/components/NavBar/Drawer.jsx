@@ -17,12 +17,13 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { orange } from "@mui/material/colors";
+import { NavLink } from "react-router-dom";
 
 export default function NavListDrawer({
+  navArrayLinks,
   onClick,
   handleSetMoviesByInput,
   setLoadingGetMovies,
-  navLinks,
   isOpen,
   onClose,
 }) {
@@ -48,14 +49,14 @@ export default function NavListDrawer({
     <StyleBoxDrawer onClick={onClick}>
       <nav aria-label="main Inicio Favoritas">
         <List>
-          {navLinks.map((item) => (
+          {navArrayLinks.map((item) => (
             <ListItem
               disablePadding
               key={item.title}
             >
               <ListItemButton
-                component="a"
-                href={item.path}
+                component={NavLink}
+                to={item.path}
                 onClick={(e) => {
                   e.stopPropagation(); // Detiene la propagación del evento
                   onClose(); // Cierra el drawer al hacer clic en un botón
