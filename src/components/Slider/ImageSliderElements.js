@@ -4,8 +4,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const Container = styled.div`
   min-height: 100vh;
-  width: 100%;
-  max-width: auto;
+  width: 100%; 
+  max-width: auto; 
   position: relative;
   justify-content: center;
   align-items: center;
@@ -23,22 +23,30 @@ export const SlideContainer = styled.div`
 
 export const StyledArrowForwardIosIcon = styled(ArrowForwardIosIcon)`
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translate(0, -50%);
   right: 10px;
   font-size: 35px;
   color: #fff;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 25px; /* Cambiar tamaño para pantallas más pequeñas */
+  }
 `;
 
 export const StyledArrowBackIosIcon = styled(ArrowBackIosIcon)`
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translate(0, -50%);
   left: 10px;
   font-size: 35px;
   color: #fff;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 25px; /* Cambiar tamaño para pantallas más pequeñas */
+  }
 `;
 
 export const DotsContainerStyles = styled.div`
@@ -50,5 +58,5 @@ export const DotsContainerStyles = styled.div`
 export const DotStyles = styled.div`
   margin: 0 3px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 50px;
 `;
