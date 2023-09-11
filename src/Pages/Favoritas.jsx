@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import { FavoriteMovies } from "../components/FavoriteMovies/FavoriteMovies";
 
 export const Favoritas = () => {
-  return (
-    <div>Favoritas</div>
-  )
-}
+  return <FavoriteMovies />;
+};
