@@ -54,6 +54,9 @@ export const Search = muiStyled("div")(({ theme }) => {
       marginLeft: theme.spacing(1),
       width: "auto",
     },
+    "@media (max-width: 600px)": {
+      maxWidth: "150px",
+    },
   };
 });
 
