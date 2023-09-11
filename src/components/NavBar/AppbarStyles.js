@@ -7,6 +7,10 @@ import InputBase from "@mui/material/InputBase";
 
 export const StyleToolbar = styled(Toolbar)`
   background-color: #141a32;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
 `;
 
 export const StyleBox = styled(Box)`
@@ -54,7 +58,7 @@ export const Search = muiStyled("div")(({ theme }) => {
 });
 
 export const SearchIconWrapper = muiStyled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 1),
   height: "100%",
   position: "absolute",
   pointerEvents: "none",
@@ -68,7 +72,7 @@ export const StyledInputBase = muiStyled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
