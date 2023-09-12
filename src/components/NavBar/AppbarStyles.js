@@ -8,13 +8,26 @@ import InputBase from "@mui/material/InputBase";
 export const StyleToolbar = styled(Toolbar)`
   background-color: #141a32;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
   max-width: 100%;
+
+  /* Aplica margin-right: auto; al primer elemento */
+  & > :first-child {
+    margin-right: auto;
+  }
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: auto; /* Alinea este contenedor a la izquierda */
 `;
 
 export const StyleBox = styled(Box)`
   display: flex;
+  justify-content: flex-end; /* Alinea los elementos a la derecha */
 
   @media (max-width: 768px) {
     display: none;

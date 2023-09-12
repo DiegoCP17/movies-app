@@ -4,11 +4,11 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 
-
 import Button from "@mui/material/Button";
 import { Drawer, IconButton } from "@mui/material";
 import LocalMoviesTwoToneIcon from "@mui/icons-material/LocalMoviesTwoTone";
 import {
+  LogoContainer,
   Search,
   SearchIconWrapper,
   StyleBox,
@@ -18,8 +18,6 @@ import {
 } from "./AppbarStyles";
 import NavListDrawer from "./Drawer";
 import { NavLink } from "react-router-dom";
-
-
 
 export const SearchAppBar = ({
   navArrayLinks,
@@ -46,6 +44,11 @@ export const SearchAppBar = ({
     setLoadingGetMovies(false);
   };
 
+  const handleReloadPage = () => {
+    // Recargar la página actual
+    window.location.reload();
+  };
+
   return (
     <>
       <AppBar position="static">
@@ -59,26 +62,33 @@ export const SearchAppBar = ({
               <MenuIcon sx={{ color: "#008cff" }} />
             </IconButton>
           </StyleBoxMenu>
-          <LocalMoviesTwoToneIcon
-            sx={{ color: "orange", fontSize: "2rem", mr: "0.5rem" }}
-          />
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            Movie -{" "}
+          <LogoContainer onClick={handleReloadPage}>
+            <LocalMoviesTwoToneIcon
+              sx={{
+                color: "orange",
+                fontSize: "2rem",
+                mr: "0.5rem",
+                flexGrow: 1,
+              }}
+            />
             <Typography
-              variant="h5"
+              variant="h6"
               component="div"
-              sx={{ flexGrow: 1, display: "inline", color: "orange" }}
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "inline-flex" },
+              }}
             >
-              Max
+              Movie{" "}
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{ flexGrow: 1,  color: "orange" }}
+              >
+                Max
+              </Typography>
             </Typography>
-          </Typography>
+          </LogoContainer>
           <StyleBox>
             {navArrayLinks.map((item) => (
               <Button
