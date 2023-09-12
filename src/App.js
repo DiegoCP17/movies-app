@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Home } from "./Pages/Home";
-import { SearchAppBar } from "./components/NavBar/Appbar";
+import { SearchAppBar } from "./components/navbar/Appbar";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
