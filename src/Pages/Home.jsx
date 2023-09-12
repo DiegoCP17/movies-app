@@ -2,12 +2,7 @@ import { Typography } from "@mui/material";
 import { MoviesHome } from "../components/MoviesHome/MoviesHome";
 import { Slider } from "../components/Slider/Slider";
 
-export const Home = ({
-  movies,
-  handleSetMoviesByInput,
-  loadingGetMovies,
-  setLoadingGetMovies,
-}) => {
+export const Home = () => {
   return (
     <div
       style={{
@@ -33,12 +28,7 @@ export const Home = ({
         Peliculas Mejor Valoradas
       </Typography>
       <br />
-      <MoviesHome
-        movies={movies}
-        handleSetMoviesByInput={handleSetMoviesByInput}
-        setLoadingGetMovies={setLoadingGetMovies}
-        loadingGetMovies={loadingGetMovies}
-      />
+      <MoviesHome />
     </div>
   );
 };

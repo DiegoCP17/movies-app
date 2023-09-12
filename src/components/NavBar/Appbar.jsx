@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
+import { MovieContext } from "../../MovieContext";
+
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-
 import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { orange } from "@mui/material/colors";
+
 import { Drawer, IconButton } from "@mui/material";
 import LocalMoviesTwoToneIcon from "@mui/icons-material/LocalMoviesTwoTone";
 import {
@@ -19,14 +24,32 @@ import {
 import NavListDrawer from "./Drawer";
 import { NavLink } from "react-router-dom";
 
-export const SearchAppBar = ({
-  navArrayLinks,
-  handleSetMoviesByInput,
-  setLoadingGetMovies,
-  loadingGetMovies,
-}) => {
+export const SearchAppBar = () => {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  /* const context = {hola: 'hola', adios: 'adios'}
+   //ando en otra pag
+   const {hola} = context 
+  console.log(hola=> 'hola')
+  */
+  const {
+    setLoadingGetMovies,
+    handleSetMoviesByInput,
+    //loadingGetMovies,
+  } = useContext(MovieContext);
+
+  const navArrayLinks = [
+    {
+      title: "Inicio",
+      path: "/Inicio",
+      icon: <HomeIcon sx={{ color: orange[500] }} />,
+    },
+    {
+      title: "Favoritas",
+      path: "/Favoritas",
+      icon: <FavoriteIcon sx={{ color: orange[500] }} />,
+    },
+  ];
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -83,7 +106,7 @@ export const SearchAppBar = ({
               <Typography
                 variant="h5"
                 component="div"
-                sx={{ flexGrow: 1,  color: "orange" }}
+                sx={{ flexGrow: 1, color: "orange" }}
               >
                 Max
               </Typography>

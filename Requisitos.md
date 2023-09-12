@@ -25,7 +25,7 @@
 
 7. tiene que tener un navbar ✅
 
-8. utilizar useContext // es un hook de react, consulta sobre él
+8. utilizar useContext // es un hook de react, consulta sobre él  ✅
    // video recomendado https://www.youtube.com/watch?v=2qgs7buSnHQ
 
 # temas de ayuda
