@@ -42,9 +42,14 @@ export const MovieBox = ({
     const isAlreadyFavorite = favorites.some((movie) => movie.title === title);
 
     if (isAlreadyFavorite) {
-      // Si la película ya es favorita, muestra una alerta indicando que ya está en favoritos
-      setSuccessAlert(false); // Oculta la alerta de éxito (si estaba mostrándose)
-      setAlreadyInFavoritesAlert(true); // Muestra la alerta de "ya en favoritos"
+      // Si la película ya es favorita, elimínala de favoritos
+      const updatedFavorites = favorites.filter(
+        (movie) => movie.title !== title
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      setIsFavorite(false); // Cambia el estado para indicar que ya no es favorita
+      setSuccessAlert(true); // Muestra la alerta de éxito
+      setAlreadyInFavoritesAlert(false); // Oculta la alerta de "ya en favoritos" (si estaba mostrándose)
     } else {
       // Si la película no es favorita, agrégala a favoritos
       const newFavorite = { title, poster_path, vote_average, release_date };
@@ -52,11 +57,9 @@ export const MovieBox = ({
         "favorites",
         JSON.stringify([...favorites, newFavorite])
       );
-      setAlreadyInFavoritesAlert(false); // Oculta la alerta de "ya en favoritos" (si estaba mostrándose)
+      setIsFavorite(true); // Cambia el estado para indicar que ahora es favorita
       setSuccessAlert(true); // Muestra la alerta de éxito
-
-      // Cambia el estado para indicar que ahora la película es favorita
-      setIsFavorite(true);
+      setAlreadyInFavoritesAlert(false); // Oculta la alerta de "ya en favoritos" (si estaba mostrándose)
     }
   };
 
@@ -124,7 +127,9 @@ export const MovieBox = ({
             onClose={() => setSuccessAlert(false)}
             severity="success"
           >
-            Película agregada a favoritas con éxito
+            {isFavorite
+              ? "Película agregada a Favoritas con éxito"
+              : "Película eliminada de Favoritas con éxito"}
           </Alert>
         )}
 
