@@ -30,8 +30,8 @@ export const FavoriteMovies = () => {
   return (
     <Container>
       <Typography
-        variant="h2"
-        sx={{ mt: "15px", mb: "25px" }}
+        variant="h3"
+        sx={{ mt: "15px", mb: "25px", fontStyle: "italic" }}
       >
         Películas Favoritas
       </Typography>
