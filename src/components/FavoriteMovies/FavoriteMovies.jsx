@@ -32,14 +32,19 @@ export const FavoriteMovies = () => {
         display: "flex",
         alignItems: "center",
         width: "100%",
+        maxwidth: "100%",
         height: "100%",
         maxHeight: "100%",
         flexDirection: "column",
         backgroundColor: "#080f28",
-        maxwidth: "100%",
       }}
     >
-      <Typography variant="h2" sx={{color:"white", mt:"15px"}}>Películas Favoritas</Typography>
+      <Typography
+        variant="h2"
+        sx={{ color: "white", mt: "15px" }}
+      >
+        Películas Favoritas
+      </Typography>
       {favorites.map((movie) => (
         <Card
           key={movie.title}
@@ -74,7 +79,7 @@ export const FavoriteMovies = () => {
           severity="success"
           style={{ marginTop: "16px" }}
         >
-          Película eliminada de Favoritas con éxito
+          La película ha sido eliminada de Favoritas con éxito
         </Alert>
       )}
     </div>
