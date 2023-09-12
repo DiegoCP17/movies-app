@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
+
+import { Typography, CardContent, CardMedia, Alert } from "@mui/material";
 import {
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Alert,
-} from "@mui/material";
+  Container,
+  DeleteButton,
+  MovieCard,
+  MoviesContainer,
+  TitleTypography,
+} from "./StyledFavoriteMovies";
 
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
@@ -27,52 +28,35 @@ export const FavoriteMovies = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        width: "100%",
-        maxwidth: "100%",
-        height: "100%",
-        maxHeight: "100%",
-        flexDirection: "column",
-        backgroundColor: "#080f28",
-      }}
-    >
+    <Container>
       <Typography
         variant="h2"
-        sx={{ color: "white", mt: "15px" }}
+        sx={{ mt: "15px", mb: "25px" }}
       >
         Películas Favoritas
       </Typography>
-      {favorites.map((movie) => (
-        <Card
-          key={movie.title}
-          style={{ margin: "16px", maxWidth: "400px" }}
-        >
-          <CardMedia
-            component="img"
-            height="200"
-            src={API_IMG + movie.poster_path}
-            alt={movie.title}
-          />
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="div"
-            >
-              {movie.title}
-            </Typography>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => handleRemoveFavorite(movie.title)}
-            >
-              Eliminar
-            </Button>
-          </CardContent>
-        </Card>
-      ))}
+      <MoviesContainer>
+        {favorites.map((movie) => (
+          <MovieCard key={movie.title}>
+            <CardMedia
+              component="img"
+              height="200"
+              src={API_IMG + movie.poster_path}
+              alt={movie.title}
+            />
+            <CardContent>
+              <TitleTypography component="div">{movie.title}</TitleTypography>
+              <DeleteButton
+                variant="contained"
+                color="error"
+                onClick={() => handleRemoveFavorite(movie.title)}
+              >
+                Eliminar
+              </DeleteButton>
+            </CardContent>
+          </MovieCard>
+        ))}
+      </MoviesContainer>
       {successAlert && (
         <Alert
           onClose={() => setSuccessAlert(false)}
@@ -82,6 +66,6 @@ export const FavoriteMovies = () => {
           La película ha sido eliminada de Favoritas con éxito
         </Alert>
       )}
-    </div>
+    </Container>
   );
 };
