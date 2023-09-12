@@ -35,6 +35,15 @@ export const FavoriteMovies = () => {
       >
         Películas Favoritas
       </Typography>
+      {successAlert && (
+        <Alert
+          onClose={() => setSuccessAlert(false)}
+          severity="success"
+          style={{ marginTop: "16px" }}
+        >
+          La película ha sido eliminada de Favoritas con éxito
+        </Alert>
+      )}
       <MoviesContainer>
         {favorites.map((movie) => (
           <MovieCard key={movie.title}>
@@ -57,15 +66,6 @@ export const FavoriteMovies = () => {
           </MovieCard>
         ))}
       </MoviesContainer>
-      {successAlert && (
-        <Alert
-          onClose={() => setSuccessAlert(false)}
-          severity="success"
-          style={{ marginTop: "16px" }}
-        >
-          La película ha sido eliminada de Favoritas con éxito
-        </Alert>
-      )}
     </Container>
   );
 };
