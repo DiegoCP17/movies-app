@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Home } from "./Pages/Home";
-import { SearchAppBar } from "./components/Navbar/Appbar";
+import { SearchAppBar } from "./components/NavBar/Appbar";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import HomeIcon from "@mui/icons-material/Home";
@@ -66,18 +66,19 @@ function App() {
           loadingGetMovies={loadingGetMovies}
         />
         <Routes>
-          <Route
-            path="/"
-            element={<Navigate to="/Inicio" />}
-          />
+          <Route path="/" element={<Navigate to="/Inicio" />} />
           <Route
             path="/Inicio"
-            element={<Home movies={movies} />}
+            element={
+              <Home
+                movies={movies}
+                handleSetMoviesByInput={handleSetMoviesByInput}
+                setLoadingGetMovies={setLoadingGetMovies}
+                loadingGetMovies={loadingGetMovies}
+              />
+            }
           />
-          <Route
-            path="/Favoritas"
-            element={<Favoritas />}
-          />
+          <Route path="/Favoritas" element={<Favoritas />} />
         </Routes>
       </div>
     </>
