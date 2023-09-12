@@ -13,11 +13,11 @@
 1. usar la api ✅
 
 2. la app tiene que tener una sección de favoritas que debe de guardarse en el local storage,
-   para esto, cada movie debe de tener un boton en forma de corazón que al darle click la agregue y al darle otra vez click la elimine de favoritas.
+   para esto, cada movie debe de tener un boton en forma de corazón que al darle click la agregue y al darle otra vez click la elimine de favoritas.✅
 
 3. la app debe de tener una seccion home que sea un slider o carrousel donde muestre las películas más populares y además el resto de películas. ✅
 
-4. en la app debe de haber un input donde se pueda filtrar o buscar por peliculas en especifico o con un personaje en especifico: ejemplo: "batman" (debe de integrarse esto con la API)
+4. en la app debe de haber un input donde se pueda filtrar o buscar por peliculas en especifico o con un personaje en especifico: ejemplo: "batman" (debe de integrarse esto con la API)✅
 
 5. Debe de utilizarse en lo máximo posible componentes de MUI y re estilarlos a tu propio gusto, esto con el fin de aprender a ganarle a librerias en especificidad css ✅
 
