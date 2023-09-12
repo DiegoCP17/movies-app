@@ -58,26 +58,28 @@ function App() {
 
   return (
     <>
-      <SearchAppBar
-        navArrayLinks={navArrayLinks}
-        handleSetMoviesByInput={handleSetMoviesByInput}
-        setLoadingGetMovies={setLoadingGetMovies}
-        loadingGetMovies={loadingGetMovies}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={<Navigate to="/Inicio" />}
+      <div style={{ backgroundColor: "#080f28", minHeight: "100vh" }}>
+        <SearchAppBar
+          navArrayLinks={navArrayLinks}
+          handleSetMoviesByInput={handleSetMoviesByInput}
+          setLoadingGetMovies={setLoadingGetMovies}
+          loadingGetMovies={loadingGetMovies}
         />
-        <Route
-          path="/Inicio"
-          element={<Home movies={movies} />}
-        />
-        <Route
-          path="/Favoritas"
-          element={<Favoritas />}
-        />
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/Inicio" />}
+          />
+          <Route
+            path="/Inicio"
+            element={<Home movies={movies} />}
+          />
+          <Route
+            path="/Favoritas"
+            element={<Favoritas />}
+          />
+        </Routes>
+      </div>
     </>
   );
 }
