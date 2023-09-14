@@ -35,31 +35,27 @@ export const MovieBox = ({
   };
 
   const handleToggleFavorite = () => {
-    // Comprueba si la película ya está en favoritos
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    // Comprueba si la película actual ya está en favoritos comparando el título
     const isAlreadyFavorite = favorites.some((movie) => movie.title === title);
 
     if (isAlreadyFavorite) {
-      // Si la película ya es favorita, elimínala de favoritos
       const updatedFavorites = favorites.filter(
         (movie) => movie.title !== title
       );
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setIsFavorite(false); // Cambia el estado para indicar que ya no es favorita
-      setSuccessAlert(true); // Muestra la alerta de éxito
-      setAlreadyInFavoritesAlert(false); // Oculta la alerta de "ya en favoritos" (si estaba mostrándose)
+      setIsFavorite(false);
+      setSuccessAlert(true);
+      setAlreadyInFavoritesAlert(false);
     } else {
-      // Si la película no es favorita, agrégala a favoritos
       const newFavorite = { title, poster_path, vote_average, release_date };
       localStorage.setItem(
         "favorites",
         JSON.stringify([...favorites, newFavorite])
       );
-      setIsFavorite(true); // Cambia el estado para indicar que ahora es favorita
-      setSuccessAlert(true); // Muestra la alerta de éxito
-      setAlreadyInFavoritesAlert(false); // Oculta la alerta de "ya en favoritos" (si estaba mostrándose)
+      setIsFavorite(true);
+      setSuccessAlert(true);
+      setAlreadyInFavoritesAlert(false);
     }
   };
 
@@ -113,7 +109,7 @@ export const MovieBox = ({
                   sx={{
                     marginTop: 2,
                     width: "150px",
-                    backgroundColor: isFavorite ? "red" : "", // Cambia el color del botón si es favorito
+                    backgroundColor: isFavorite ? "red" : "",
                   }}
                 >
                   {isFavorite ? "Eliminar de Favoritas" : "Añadir a Favoritas"}
