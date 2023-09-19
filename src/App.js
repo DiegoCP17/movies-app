@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { MovieProvider } from "./MovieContext";
+import { Home } from "./Pages/Home";
+import { SearchAppBar } from "./components/navbar/Appbar";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { Favoritas } from "./Pages/Favoritas";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MovieProvider>
+      <div style={{ backgroundColor: "#080f28", minHeight: "100vh" }}>
+        <SearchAppBar />
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/Inicio" />}
+          />
+          <Route
+            path="/Inicio"
+            element={<Home />}
+          />
+          <Route
+            path="/Favoritas"
+            element={<Favoritas />}
+          />
+        </Routes>
+      </div>
+    </MovieProvider>
   );
 }
 
