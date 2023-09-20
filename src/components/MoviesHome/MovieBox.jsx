@@ -22,8 +22,11 @@ export const MovieBox = ({
   overview,
 }) => {
   const verifyIfMovieIsInFavorites = (movieTitle) => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!Array.isArray(favorites)) {
+      favorites = [favorites];
+    }
+    console.log(favorites);
     return favorites.some((movie) => movie.title === movieTitle);
   };
 
@@ -42,12 +45,18 @@ export const MovieBox = ({
   };
 
   const handleToggleFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     const isAlreadyFavorite = verifyIfMovieIsInFavorites(title);
 
     if (isAlreadyFavorite) {
-      const updatedFavorites = favorites.find((movie) => movie.title !== title);
+      if (!Array.isArray(favorites)) {
+        favorites = [favorites];
+      }
+      const updatedFavorites = favorites.filter(
+        (movie) => movie.title !== title
+      );
+
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       setIsFavorite(false);
       setSuccessAlert(true);
@@ -86,7 +95,10 @@ export const MovieBox = ({
             direction="row"
             spacing={2}
           >
-            <StyledModal open={open} onClose={handleClose}>
+            <StyledModal
+              open={open}
+              onClose={handleClose}
+            >
               <StyledPaper>
                 <Stack spacing={2}>
                   <img
@@ -125,7 +137,10 @@ export const MovieBox = ({
             </StyledModal>
           </Stack>
           {successAlert && (
-            <Alert onClose={() => setSuccessAlert(false)} severity="success">
+            <Alert
+              onClose={() => setSuccessAlert(false)}
+              severity="success"
+            >
               {isFavorite
                 ? "Película agregada a Favoritas con éxito"
                 : "Película eliminada de Favoritas con éxito"}

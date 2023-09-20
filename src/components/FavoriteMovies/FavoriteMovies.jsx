@@ -17,7 +17,12 @@ export const FavoriteMovies = () => {
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
+    if (Array.isArray(storedFavorites)) {
+      setFavorites(storedFavorites);
+    } else {
+      // Si no es un array, inicializa favorites como un array vacío.
+      setFavorites([]);
+    }
   }, []);
 
   const handleRemoveFavorite = (title) => {
@@ -45,26 +50,27 @@ export const FavoriteMovies = () => {
         </Alert>
       )}
       <MoviesContainer>
-        {favorites.map((movie) => (
-          <MovieCard key={movie.title}>
-            <CardMedia
-              component="img"
-              height="200"
-              src={API_IMG + movie.poster_path}
-              alt={movie.title}
-            />
-            <CardContent>
-              <TitleTypography component="div">{movie.title}</TitleTypography>
-              <DeleteButton
-                variant="contained"
-                color="error"
-                onClick={() => handleRemoveFavorite(movie.title)}
-              >
-                Eliminar
-              </DeleteButton>
-            </CardContent>
-          </MovieCard>
-        ))}
+        {Array.isArray(favorites) &&
+          favorites.map((movie) => (
+            <MovieCard key={movie.title}>
+              <CardMedia
+                component="img"
+                height="200"
+                src={API_IMG + movie.poster_path}
+                alt={movie.title}
+              />
+              <CardContent>
+                <TitleTypography component="div">{movie.title}</TitleTypography>
+                <DeleteButton
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleRemoveFavorite(movie.title)}
+                >
+                  Eliminar
+                </DeleteButton>
+              </CardContent>
+            </MovieCard>
+          ))}
       </MoviesContainer>
     </Container>
   );
