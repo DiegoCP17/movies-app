@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.1debf7c7.css","mappings":"AAAA,EAGE,qBAAsB,CAFtB,QAAS,CACT,SAEF,CAEA,KAGE,cAAc,CAFd,iBAAkB,CAClB,UAGF","sources":["index.css"],"sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  overflow-x: hidden;\r\n  width: 100%;\r\n  max-width:100%;\r\n\r\n}\r\n"],"names":[],"sourceRoot":""}

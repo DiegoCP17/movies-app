@@ -53,7 +53,6 @@ export const StyleBoxDrawer = styled(Box)`
 `;
 
 export const Search = muiStyled("div")(({ theme }) => {
-  console.log(theme);
   return {
     position: "relative",
     borderRadius: theme.shape.borderRadius,

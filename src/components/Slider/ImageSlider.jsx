@@ -29,14 +29,15 @@ export const ImageSlider = ({ slides }) => {
 
   return (
     <Container>
-      <StyledArrowBackIosIcon onClick={gotoPrevious}></StyledArrowBackIosIcon>
-      <StyledArrowForwardIosIcon onClick={gotoNext}></StyledArrowForwardIosIcon>
+      <StyledArrowBackIosIcon onClick={gotoPrevious} />
+      <StyledArrowForwardIosIcon onClick={gotoNext} />
       <SlideContainer imageUrl={slides[currentIndex]} />
       <DotsContainerStyles>
         {slides.map((_, slideIndex) => (
           <DotStyles
             key={slideIndex}
             onClick={() => gotoSlide(slideIndex)}
+            className={currentIndex === slideIndex ? "is-focus" : ""}
           >
             •
           </DotStyles>

@@ -4,8 +4,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const Container = styled.div`
   min-height: 100vh;
-  width: 100%; 
-  max-width: auto; 
+  width: 100%;
+  max-width: auto;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -59,4 +59,7 @@ export const DotStyles = styled.div`
   margin: 0 3px;
   cursor: pointer;
   font-size: 50px;
+  &.is-focus {
+    color: blue;
+  }
 `;
